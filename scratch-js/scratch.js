@@ -1,27 +1,92 @@
 var scratch = {
     
-
-    BD: {
         X: 0,
         Y: 0,
-    
-        setX(posx) {
-            this.X = posx
+        rotation: 90,
+        mouseX: 0,
+        mouseY: 0,
+
+
+        /**motion */
+        move(m) {
+            this.X += Math.sin(this.rotation) * m
+            this.Y += Math.cos(this.rotation) * m 
         },
-        setY(posy) {
+        
+        turnR(r) {
+            this.rotation += r
+        },
+        
+        turnL(r) {
+            this.rotation -= r
+        },
+        
+        goto(posx, posy) {
+            this.X = posx
             this.Y = posy
         },
+        
+        point(r) {
+            this.rotation = r
+        },
+        
         changeX(posx) {
             this.X += posx
         },
+
+        setX(posx) {
+            this.X = posx
+        },
+
         changeY(posy) {
             this.Y += posy
         },
-    
-    
-    },
-    
-    CD:  {
+
+        setY(posy) {
+            this.Y = posy
+        },
+
+        /**looks */
+
+        /**sound */
+        
+        /**event */
+        
+        /**control */
+
+        repeat(repeat, func) {
+            for (let j = 0; j < repeat; j++) {
+                func();
+            }
+        
+        },
+        
+        /**sensing */
+        
+        /**operators */
+        
+        /**variabels */
+        
+        /**my blocks */
+
+        /**sprite */
+        spriteName: [0],
+        spriteUrl: [0],
+        spriteCode: [0],
+        sprite(name, url, func) {
+            this.spriteName.push(name)
+            this.spriteName.push(url)
+            this.spriteName.push(func)
+        },
+        
+        /**update */
+        update(){
+            
+        },
+
+
+        /**tools (work in progress) */
+    ED:  {
     
         X: 0,
         Y: 0,
@@ -49,14 +114,7 @@ var scratch = {
     
     },
 
-    repeat(i, func) {
-        for (let j = 0; j < i; j++) {
-            func();
-        }
-        
-    }
 
-    
 
 }
 

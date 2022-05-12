@@ -11,22 +11,6 @@ var ScreenSize = {
     height: canvas.height
 };
 
-scratch.CD.setX(10)
-
-var i = 5
-
-scratch.repeat(i, function() {
-    console.log(i-4);
-    i++;
+sprit("hello", "https://stiostudio.github.io/bilder/Epple.gif", function(){
+    
 })
-console.log("")
-
-console.log(scratch.CD.X)
-
-scratch.repeat(Math.random() * 100, function(){
-    scratch.BD.changeX(1)
-})
-
-scratch.BD.setX(10**10**10)
-
-console.log(scratch.BD.X)
