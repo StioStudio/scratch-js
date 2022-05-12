@@ -1,15 +1,4 @@
 
-function loadImage(url) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.src = url;
-    });
-}
-
-const canvas = document.getElementById("cv");
-const ctx = canvas.getContext('2d');
-
 var scratch = {
     
         X: 0,
@@ -20,42 +9,42 @@ var scratch = {
 
 
         /**motion */
-        move(m) {
-            this.X += Math.sin(this.rotation) * m
-            this.Y += Math.cos(this.rotation) * m 
+        move(_length) {
+            this.X += Math.sin(this.rotation) * _length
+            this.Y += Math.cos(this.rotation) * _length
         },
         
-        turnR(r) {
-            this.rotation += r
+        turnR(_r) {
+            this.rotation += _r
         },
         
-        turnL(r) {
-            this.rotation -= r
+        turnL(_r) {
+            this.rotation -= _r
         },
         
-        goto(posx, posy) {
-            this.X = posx
-            this.Y = posy
+        goto(_posx, _posy) {
+            this.X = _posx
+            this.Y = _posy
         },
         
-        point(r) {
-            this.rotation = r
+        point(_r) {
+            this.rotation = _r
         },
         
-        changeX(posx) {
-            this.X += posx
+        changeX(_posx) {
+            this.X += _posx
         },
 
-        setX(posx) {
-            this.X = posx
+        setX(_posx) {
+            this.X = _posx
         },
 
-        changeY(posy) {
-            this.Y += posy
+        changeY(_posy) {
+            this.Y += _posy
         },
 
-        setY(posy) {
-            this.Y = posy
+        setY(_posy) {
+            this.Y = _posy
         },
 
         /**looks */
@@ -66,15 +55,15 @@ var scratch = {
         
         /**control */
 
-        repeat(repeat, func) {
-            for (let j = 0; j < repeat; j++) {
-                func();
+        repeat(_repeat, _text) {
+            for (let j = 0; j < _repeat; j++) {
+                _text();
             }
         
         },
         
         /**sensing */
-        
+
         /**operators */
         
         /**variabels */
@@ -85,44 +74,67 @@ var scratch = {
         spriteName: [],
         spriteUrl: [],
         spriteCode: [],
-        sprite(name, url, func) {
-            this.spriteName.push(name)
-            this.spriteUrl.push(url)
-            this.spriteCode.push(func)
+
+        sprite(_name, _url, _text) {
+            this.spriteName.push(_name)
+            this.spriteUrl.push(_url)
+            this.spriteCode.push(_text)
         },
+
         
         /**update */
-        update(rem, time){
+        update(_forever, _time){
             
-            if (rem = "all") {
+            if (_forever = true) {
             
                 setInterval(() => {
 
                     for (let j = 0;j < this.spriteName.length;j++) {
+                    
                         this.spriteCode[j]()
                         console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
+    
                     }        
-            
-                }, time*1000);
-                
+
+                }, _time*1000);
+
             }
 
             else{
             
                 for (let j = 0;j < this.spriteName.length;j++) {
+
                     this.spriteCode[j]()
                     console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
-                }        
+
+                }
             
             }
             
 
         },
 
-        /**testing */
+        /**working on */
+        keypressed(_key){
+
+            window,addEventListener("keydown", e => {
+                return Input.keysPressed(e.keyCode) = true;
+            });
+            window,addEventListener("keyup", e => {
+                return Input.keysPressed(e.keyCode) = false;
+            })
+            
+        },
+        canvas(){
+            const canvas = document.getElementById("cv");
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth - 25;
+            canvas.height = window.innerHeight - 25;
+        }
 
 
 }
+
 
 
 export { scratch }
