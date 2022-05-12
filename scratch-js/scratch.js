@@ -49,6 +49,10 @@ var scratch = {
 
         /**looks */
 
+        say(_text){
+            console.log(_text)
+        },
+
         /**sound */
         
         /**event */
@@ -85,14 +89,14 @@ var scratch = {
         /**update */
         update(_forever, _time){
             
-            if (_forever = true) {
+            if (_forever) {
             
                 setInterval(() => {
 
                     for (let j = 0;j < this.spriteName.length;j++) {
-                    
+
+                        console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");                    
                         this.spriteCode[j]()
-                        console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
     
                     }        
 
@@ -104,8 +108,8 @@ var scratch = {
             
                 for (let j = 0;j < this.spriteName.length;j++) {
 
-                    this.spriteCode[j]()
                     console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
+                    this.spriteCode[j]()
 
                 }
             
@@ -125,12 +129,24 @@ var scratch = {
             })
             
         },
-        canvas(){
-            const canvas = document.getElementById("cv");
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth - 25;
-            canvas.height = window.innerHeight - 25;
-        }
+
+        canvas(_name, _type){
+
+            if (_type){
+                setInterval(()=>{
+                    const canvas = document.getElementById(_name);
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = window.innerWidth - 25;
+                    canvas.height = window.innerHeight - 25;
+                }, 1000)
+            }
+            else{
+                const canvas = document.getElementById(_name);
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth - 25;
+                canvas.height = window.innerHeight - 25;
+            }
+        },
 
 
 }
