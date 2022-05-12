@@ -11,6 +11,19 @@ var ScreenSize = {
     height: canvas.height
 };
 
-sprit("hello", "https://stiostudio.github.io/bilder/Epple.gif", function(){
+
+scratch.sprite("hello", "https://stiostudio.github.io/bilder/Epple.gif", function(){
     
+    console.log("hi")
+
 })
+
+scratch.sprite("hi", "https://stiostudio.github.io/bilder/Epple.gif", function(){
+    
+    scratch.repeat(10,function(){
+        console.log(Math.random())
+    })
+
+})
+
+scratch.update("all", 1)

@@ -1,3 +1,15 @@
+
+function loadImage(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = url;
+    });
+}
+
+const canvas = document.getElementById("cv");
+const ctx = canvas.getContext('2d');
+
 var scratch = {
     
         X: 0,
@@ -70,55 +82,47 @@ var scratch = {
         /**my blocks */
 
         /**sprite */
-        spriteName: [0],
-        spriteUrl: [0],
-        spriteCode: [0],
+        spriteName: [],
+        spriteUrl: [],
+        spriteCode: [],
         sprite(name, url, func) {
             this.spriteName.push(name)
-            this.spriteName.push(url)
-            this.spriteName.push(func)
+            this.spriteUrl.push(url)
+            this.spriteCode.push(func)
         },
         
         /**update */
-        update(){
+        update(rem, time){
             
+            if (rem = "all") {
+            
+                setInterval(() => {
+
+                    for (let j = 0;j < this.spriteName.length;j++) {
+                        this.spriteCode[j]()
+                        console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
+                    }        
+            
+                }, time*1000);
+                
+            }
+
+            else{
+            
+                for (let j = 0;j < this.spriteName.length;j++) {
+                    this.spriteCode[j]()
+                    console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
+                }        
+            
+            }
+            
+
         },
 
-
-        /**tools (work in progress) */
-    ED:  {
-    
-        X: 0,
-        Y: 0,
-        Z: 0,
-    
-        setX(posx) {
-            this.X = posx
-        },
-        setY(posy) {
-            this.Y = posy
-        },
-        setZ(posZ) {
-            this.Z = posZ
-        },
-
-        changeX(posx) {
-            this.X += posx
-        },
-        changeY(posy) {
-            this.Y += posy
-        },
-        changeZ(posZ) {
-            this.Z += posZ
-        },
-    
-    },
-
+        /**testing */
 
 
 }
-
-
 
 
 export { scratch }
