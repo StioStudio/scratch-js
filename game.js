@@ -1,18 +1,15 @@
 
 import { scratch } from "./scratch-js/scratch.js";
 
-scratch.canvas("cv", true)
+scratch.canvas('game', false)
 
-scratch.sprite("hello","",function(){
 
-    scratch.repeat(5,function(){
-    
-        scratch.say(Math.random()*100)
-    
-    })
 
+scratch.sprite("nikee", "https://stiostudio.github.io/bilder/epple2.png", ()=>{
+    scratch.say("Dino")
+    scratch.changeX(0.1)
 })
 
-scratch.update(true, 2)
 
 
+scratch.update()

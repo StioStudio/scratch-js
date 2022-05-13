@@ -1,4 +1,13 @@
 
+function loadImage(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.src = url;
+    });
+}
+
+
 var scratch = {
     
         X: 0,
@@ -6,7 +15,9 @@ var scratch = {
         rotation: 90,
         mouseX: 0,
         mouseY: 0,
-
+        
+        cnvz:undefined,
+        ctx:undefined,
 
         /**motion */
         move(_length) {
@@ -47,7 +58,7 @@ var scratch = {
             this.Y = _posy
         },
 
-        /**looks */
+        /** looks */
 
         say(_text){
             console.log(_text)
@@ -85,19 +96,29 @@ var scratch = {
             this.spriteCode.push(_text)
         },
 
+        j: 0, 
+
+        async run_update(){
+            this.ctx.clearRect(0, 0, this.cnvz.width, this.cnvz.height);
+            console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");                    
+            this.spriteCode[this.j]()
+
+            const img = await loadImage(this.spriteUrl[this.j]);
+            this.ctx.drawImage(img, this.X, this.Y)
+
+        },
         
         /**update */
         update(_forever, _time){
-            
+
             if (_forever) {
             
                 setInterval(() => {
 
-                    for (let j = 0;j < this.spriteName.length;j++) {
+                    for (this.j = 0;this.j < this.spriteName.length;this.j++) {
 
-                        console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");                    
-                        this.spriteCode[j]()
-    
+                        this.run_update()
+                        
                     }        
 
                 }, _time*1000);
@@ -106,10 +127,9 @@ var scratch = {
 
             else{
             
-                for (let j = 0;j < this.spriteName.length;j++) {
+                for (this.j = 0;this.j < this.spriteName.length;this.j++) {
 
-                    console.log("%cSprite update","color:red; font-size:20px;color:#ff0000;");
-                    this.spriteCode[j]()
+                    this.run_update()
 
                 }
             
@@ -130,21 +150,22 @@ var scratch = {
             
         },
 
-        canvas(_name, _type){
+        canvas(_id, _type){
 
             if (_type){
                 setInterval(()=>{
-                    const canvas = document.getElementById(_name);
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = window.innerWidth - 25;
-                    canvas.height = window.innerHeight - 25;
+                    this.cnvz = document.getElementById(_id);
+                    this.ctx = this.cnvz.getContext('2d');
+                    this.cnvz.width = window.innerWidth - 25;
+                    this.cnvz.height = window.innerHeight - 25;
+                    
                 }, 1000)
             }
             else{
-                const canvas = document.getElementById(_name);
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth - 25;
-                canvas.height = window.innerHeight - 25;
+                this.cnvz = document.getElementById(_id);
+                this.ctx = this.cnvz.getContext('2d');
+                this.cnvz.width = window.innerWidth - 25;
+                this.cnvz.height = window.innerHeight - 25;
             }
         },
 
