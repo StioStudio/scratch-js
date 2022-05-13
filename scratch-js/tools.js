@@ -1,6 +1,8 @@
 
-/**tools (work in progress) */
-var ED =  {
+/**tools */
+var tools = {
+    /**3d */
+    ED:  {
     
         X: 0,
         Y: 0,
@@ -26,6 +28,12 @@ var ED =  {
             this.Z += posZ
         },
             
+    },
+    /**perlin noise */
+
+    /**more tool */
+    
+
 }
 
-export{ ED }
+export{ tools }

@@ -1,15 +1,13 @@
 
-import { scratch } from "./scratch-js/scratch.js";
+import { scratch, tools } from "./scratch-js/scratch.js";
 
-scratch.canvas('game', false)
+scratch.canvas("game", true)
 
+scratch.sprite("hello", "https://stiostudio.github.io/bilder/Epple.gif", function(){
 
+    scratch.changeX(1)
+    scratch.changeY(1)
 
-scratch.sprite("nikee", "https://stiostudio.github.io/bilder/epple2.png", ()=>{
-    scratch.say("Dino")
-    scratch.changeX(0.1)
 })
 
-
-
-scratch.update()
+scratch.update(true, 0.05)
